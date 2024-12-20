@@ -1,8 +1,8 @@
-import ErrorPage from "./ErrorPage";
-import Shop from "./Shop";
-import Cart from "./Cart";
-import App from "./App";
-import Home from "./Home";
+import ErrorPage from "./pages/ErrorPage";
+import Shop from "./pages/Shop";
+import Cart from "./pages/Cart";
+import App from "./pages/App";
+import Home from "./pages/Home";
 
 const Routes = [
   {

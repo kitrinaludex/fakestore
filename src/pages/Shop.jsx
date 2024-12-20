@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import capitalize from "../capitalize";
-import ItemContainer from "./RenderItems";
+import capitalize from "../components/capitalize";
+import ItemContainer from "../components/RenderItems";
 
 const Shop = () => {
   const { categorySelection } = useParams();
