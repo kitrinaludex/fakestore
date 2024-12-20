@@ -1,5 +1,5 @@
-const ItemCard = ({title}) => { 
-    return <div>{title}</div>
-}
+const ItemCard = ({ title }) => {
+  return <div>{title}</div>;
+};
 
-export default ItemCard
+export default ItemCard;

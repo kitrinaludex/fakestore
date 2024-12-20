@@ -1,36 +1,36 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import capitalize from "../capitalize";
-import ItemContainer from "../RenderItems";
-
-
+import ItemContainer from "./RenderItems";
 
 const Shop = () => {
+  const { categorySelection } = useParams();
+  const [categories, setCategories] = useState([]);
 
-  const [categories, setCategories] = useState([])
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products/categories")
+      .then((response) => response.json())
+      .then((response) => setCategories(response));
+  }, []);
 
-  const {categorySelection} = useParams()
+  const categoryList = categories.map((entry, index) => {
+    return (
+      <li key={index}>
+        <Link to={"/shop/" + entry}>{capitalize(entry)}</Link>
+      </li>
+    );
+  });
 
-  useEffect(() => { /* do i even need an effect? */
-    fetch('https://fakestoreapi.com/products/categories')
-            .then(response => response.json())
-            .then(response => setCategories(response))
-          },[]);
-  
-    const categoryList =  categories.map((entry,index) => {
-    return <li key={index}><Link to={"/shop/" + entry}>{capitalize(entry)}</Link></li> 
-  })
-  /* organize this piece of shit^ */
-  
-  return <>
-  <div>HI im a shop</div>
-  <div>Categories
-    <ul>{categoryList}</ul>
-  </div>
-  <div>
-    <ItemContainer category={categorySelection}/>
-  </div>
-  </>
+  return (
+    <>
+      <div>HI im a shop</div>
+      <div>
+        Categories
+        <ul>{categoryList}</ul>
+      </div>
+      <ItemContainer category={categorySelection} />
+    </>
+  );
 };
 
 export default Shop;
