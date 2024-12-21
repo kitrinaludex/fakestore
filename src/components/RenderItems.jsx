@@ -2,16 +2,18 @@ import ItemCard from "./ItemCard";
 
 import { useEffect, useState } from "react";
 
-const ItemContainer = () => {
+const ItemContainer = ({ cartState }) => {
   const [items, setItems] = useState([]);
   /*  const itemLimit = 20; */
+
+  const { cart, setCart } = cartState;
 
   const itemCards = items.map((item) => (
     <ItemCard
       key={item.id}
-      title={item.title}
-      imageurl={item.image}
-      desc={item.decription}
+      item={item}
+      cart={cart}
+      setCart={setCart}
     ></ItemCard>
   ));
 
@@ -20,7 +22,7 @@ const ItemContainer = () => {
       .then((response) => response.json())
       .then((response) => setItems(response));
     /* add error handling */
-  }, []); /* discard all fetch requests when a new one comes in */
+  }, []);
   return <div className="item-container">{itemCards}</div>;
 };
 

@@ -1,26 +1,37 @@
 import { useState } from "react";
 import "./ItemCard.css";
-const ItemCard = ({ title, imageurl, desc }) => {
+const ItemCard = ({ item, cart, setCart }) => {
   const [itemCount, setItemCount] = useState(1);
+
+  function handleChange(value) {
+    if (value < 0) {
+      setItemCount(1);
+    } else {
+      setItemCount(value);
+    }
+  }
 
   return (
     <div className="item-card">
       <div className="image-container">
-        <img src={imageurl} alt={desc} />
+        <img src={item.image} />
       </div>
-      <div>{title}</div>
+      <div>{item.title}</div>
       <div className="purchase-controls">
         <div className="item-count">
           <button onClick={() => setItemCount(itemCount - 1 || 1)}>-</button>
           <input
             value={itemCount}
             type="number"
-            min={1}
-            onChange={() => handleChange}
+            onChange={(e) => handleChange(e.target.value)}
           />
-          <button onClick={() => setItemCount(itemCount + 1)}>+</button>
+          <button onClick={() => setItemCount(Number(itemCount) + 1)}>+</button>
         </div>
-        <button>Add to cart</button>
+        <button
+          onClick={() => setCart([...cart, { ...item, count: itemCount }])}
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   );

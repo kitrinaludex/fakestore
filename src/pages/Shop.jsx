@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 import capitalize from "../components/capitalize";
 import ItemContainer from "../components/RenderItems";
 
@@ -28,7 +28,10 @@ const Shop = () => {
         {/*         Categories
         <ul>{categoryList}</ul> */}
       </div>
-      <ItemContainer category={categorySelection} />
+      <ItemContainer
+        category={categorySelection}
+        cartState={useOutletContext()}
+      />
       {/* learn how destruction works */}
       {/* make the card component fully functional */}
     </>
