@@ -27,10 +27,10 @@ const ItemCard = ({ item, cart, setCart }) => {
           />
           <button onClick={() => setItemCount(Number(itemCount) + 1)}>+</button>
         </div>
-        <button
-          onClick={() => setCart([...cart, { ...item, count: itemCount }])}
-        >
+        <button onClick={() => setCart([...cart, item])}>
           Add to cart
+          {/* make this button have 3 states: not in cart
+          in cart, and when in cart on hover:remove from cart */}
         </button>
       </div>
     </div>

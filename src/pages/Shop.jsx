@@ -33,7 +33,6 @@ const Shop = () => {
         cartState={useOutletContext()}
       />
       {/* learn how destruction works */}
-      {/* make the card component fully functional */}
     </>
   );
 };

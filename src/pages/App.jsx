@@ -4,7 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 /* make home the root route and pass state with an outlet from home.jsx */
 
 function App() {
-  const [cart, setCart] = useState([{ name: "socks" }, { name: "pants" }]);
+  const [cart, setCart] = useState([]);
 
   return (
     <>
