@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import capitalize from "../components/capitalize";
-import ItemContainer from "../components/RenderItems";
+import ItemContainer from "../components/ItemContainer";
 
 const Shop = () => {
   const { categorySelection } = useParams();
   const [categories, setCategories] = useState([]);
 
-  /*   useEffect(() => {
+  useEffect(() => {
     fetch("https://fakestoreapi.com/products/categories")
       .then((response) => response.json())
       .then((response) => setCategories(response));
@@ -19,14 +19,17 @@ const Shop = () => {
         <Link to={"/shop/" + entry}>{capitalize(entry)}</Link>
       </li>
     );
-  }); */
+  });
 
   return (
     <>
       <div>HI im a shop</div>
       <div>
-        {/*         Categories
-        <ul>{categoryList}</ul> */}
+        Categories
+        <ul>
+          <Link to={"/shop/"}>All</Link>
+          {categoryList}
+        </ul>
       </div>
       <ItemContainer
         category={categorySelection}
