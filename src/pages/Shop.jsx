@@ -4,7 +4,7 @@ import capitalize from "../components/capitalize";
 import ItemContainer from "../components/ItemContainer";
 
 const Shop = () => {
-  const { categorySelection } = useParams();
+  const [categorySelection, setCategory] = useState("electronics");
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -13,10 +13,23 @@ const Shop = () => {
       .then((response) => setCategories(response));
   }, []);
 
+  function handleCheckboxChange(value) {
+    if (value === categorySelection) {
+      setCategory("");
+    } else {
+      setCategory(value);
+    }
+  }
+
   const categoryList = categories.map((entry, index) => {
     return (
       <li key={index}>
-        <Link to={"/shop/" + entry}>{capitalize(entry)}</Link>
+        <input
+          type="checkbox"
+          checked={categorySelection === entry}
+          onChange={() => handleCheckboxChange(entry)}
+        />
+        {capitalize(entry)}
       </li>
     );
   });
@@ -26,10 +39,7 @@ const Shop = () => {
       <div>HI im a shop</div>
       <div>
         Categories
-        <ul>
-          <Link to={"/shop/"}>All</Link>
-          {categoryList}
-        </ul>
+        <ul>{categoryList}</ul>
       </div>
       <ItemContainer
         category={categorySelection}

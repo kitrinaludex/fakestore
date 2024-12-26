@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 const ItemContainer = ({ cartState, category }) => {
   const [items, setItems] = useState([]);
-  /*  const itemLimit = 20; */
 
   const { cart, setCart } = cartState;
 
@@ -15,10 +14,9 @@ const ItemContainer = ({ cartState, category }) => {
     /* add error handling */
   }, []);
 
-  /* if category is true set items to filteredItems */
-
   const filteredItems = items.filter(
-    (item) => item.category === category || category === undefined
+    // render everything if theres no category
+    (item) => item.category === category || category === ""
   );
 
   const itemCards = filteredItems.map((item) => (
